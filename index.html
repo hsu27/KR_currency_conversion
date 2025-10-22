@@ -11,22 +11,23 @@
     <h1 class="text-2xl font-bold mb-4 text-center">🇰🇷 韓國換匯試算表</h1>
 
     <div class="grid grid-cols-2 gap-3">
-      <label class="flex flex-col">台幣金額 (C5)
+      <label class="flex flex-col">欲兌換台幣金額
         <input id="C5" type="number" class="border p-2 rounded" placeholder="輸入台幣金額">
-      </label>
-      <label class="flex flex-col">韓國換錢所台幣匯率 (C6)
+      </label><br>
+      <label class="flex flex-col">韓國換錢所台幣匯率
         <input id="C6" type="number" step="0.01" class="border p-2 rounded">
-      </label>
-      <label class="flex flex-col">韓國換錢所美金匯率 (C7)
+      </label><br>
+      <label class="flex flex-col">韓國換錢所美金匯率
         <input id="C7" type="number" step="0.01" class="border p-2 rounded">
-      </label>
-      <label class="flex flex-col">台灣銀行美金匯率 (C8)
+      </label><br>
+      <label class="flex flex-col">台灣銀行美金匯率
         <input id="C8" type="number" step="0.01" class="border p-2 rounded">
-      </label>
-      <label class="flex flex-col">台灣銀行韓幣匯率 (C9)
+      </label><br>
+      <label class="flex flex-col">台灣銀行韓幣匯率
         <input id="C9" type="number" step="0.01" class="border p-2 rounded">
       </label>
     </div>
+    <br>
 
     <button onclick="calc()" class="mt-4 w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600">開始試算</button>
 
@@ -51,16 +52,16 @@
       let diffKR = 0;
 
       if (F5 && F6) {
-        best = F5 > F6 ? "以台幣直接兌換 (F5) 較划算" : "先換美金再兌換 (F6) 較划算";
+        best = F5 > F6 ? "以台幣直接兌換較划算" : "先換美金再兌換較划算";
         diffKR = Math.abs(F5 - F6);
       }
 
       const diffTW = (C9) ? (F9 - Math.max(F5, F6)) : 0;
 
       document.getElementById("result").innerHTML = `
-        <p>🇹🇼 以台幣直接兌換 (F5)：<strong>${F5.toLocaleString()}</strong> 韓元</p>
-        <p>💵 先換美金再兌換 (F6)：<strong>${F6.toLocaleString()}</strong> 韓元</p>
-        <p>🏦 台灣銀行直接換 (F9)：<strong>${F9.toLocaleString()}</strong> 韓元</p>
+        <p>🇹🇼 以台幣直接兌換：<strong>${F5.toLocaleString()}</strong> 韓元</p>
+        <p>💵 先換美金再兌換：<strong>${F6.toLocaleString()}</strong> 韓元</p>
+        <p>🏦 台灣銀行直接換：<strong>${F9.toLocaleString()}</strong> 韓元</p>
         <hr>
         <p>📊 最划算方案：<strong>${best || "—"}</strong></p>
         <p>🇰🇷 韓國換錢價差：<strong>${diffKR.toLocaleString()}</strong> 韓元</p>
